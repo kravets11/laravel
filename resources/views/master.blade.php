@@ -80,7 +80,7 @@
             <div class="content">
                 <h1>@yield('title')</h1>
                 <div class="title m-b-md">
-                    Hello Netology
+                    Hello
                 </div>
 
                 <div class="links">

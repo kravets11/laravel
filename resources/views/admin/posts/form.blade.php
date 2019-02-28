@@ -11,7 +11,7 @@
 						<div class="panel-heading">Edit post</div>
 					@endif
 					<div class="panel-body">
-						<form action="@if(empty($entity)){{ route('posts.store') }}@else{{ route('posts.update', $entity->id) }}@endif" method="post">
+						<form action="@if(empty($entity)){{ route('posts.store') }}@else{{ route('posts.update', $entity->id) }}@endif" method="post" enctype="multipart/form-data">
 							{{ csrf_field() }}
 							@isset($entity)
 								{{ method_field('PUT') }}
@@ -21,6 +21,7 @@
 								@include('admin.fields.text', ['field' => 'slug', 'name' => 'Slug'])
 								@include('admin.fields.textarea', ['field' => 'body', 'name' => 'Body', 'rows' => 10])
 								@include('admin.fields.select', ['field' => 'category_id', 'name' => 'Category', 'options' => $categories])
+								@include('admin.fields.image', ['field' => 'image', 'name' => 'Image'])
 							</div>
 							<input type="submit" value="save">
 						</form>

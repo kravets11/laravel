@@ -19,6 +19,7 @@
 							<div class="row">
 								@include('admin.fields.text', ['field' => 'title', 'name' => 'Title'])
 								@include('admin.fields.text', ['field' => 'slug', 'name' => 'Slug'])
+								@include('admin.fields.image', ['field' => 'slug', 'name' => 'Slug'])
 							</div>
 							<input type="submit" value="save">
 						</form>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -43,7 +45,14 @@ class PostsController extends Controller
             'title' => 'required',
             'category_id' => 'required|integer'
         ]);
+        File::makeDirectory('storage/images/', 0777, true, true);
 
+        $item = $request->file('image');
+//        dd($request);
+        $filename = time() . '.' . $item->getClientOriginalExtension();
+        $location = 'storage/images/' . $filename;
+        $request->image = $location . $filename;
+        Image::make($item)->save($location);
         Post::create($request->all());
 
         return redirect()->route('posts.index');
@@ -83,12 +92,20 @@ class PostsController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'slug' => 'required',
+            'slug' => 'required|unique:posts',
             'title' => 'required',
             'category_id' => 'required|integer'
         ]);
+        File::makeDirectory('storage/images/', 0777, true, true);
 
-        $post->update($request->all());
+        $item = $request->file('image');
+
+        $filename = time() . '.' . $item->getClientOriginalExtension();
+        $location = 'storage/images/' . $filename;
+        Image::make($item)->save($location);
+        $request = $request->all();
+        $request['image'] = 'images/' . $filename;
+        $post->update($request);
 
         return redirect()->route('posts.index');
     }
@@ -104,4 +121,5 @@ class PostsController extends Controller
         $post->delete();
         return redirect()->route('posts.index');
     }
+
 }

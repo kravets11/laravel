@@ -1,4 +1,4 @@
-@extends('admin.layout.fields.main')
+@extends('admin.fields.main')
 
 @section('field')
 	@if(isset($entity->$field) && !empty($entity->$field))
