@@ -33,7 +33,13 @@
                 eventLimit: true,
                 selectHelper: true,
                 allDaySlot: false,
-                select: function(start, end) {
+                select: function(start, type) {
+                    $.ajax({
+
+                    });
+                    // var end = start + type;
+
+                    // alert('popup');
                     var title = prompt('Event Title:');
 
                     var eventData;
@@ -41,7 +47,7 @@
                         eventData = {
                             title: title,
                             start: start,
-                            end: end
+                            end: type
                         };
                         console.log(eventData);
                         $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true

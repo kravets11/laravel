@@ -24,7 +24,6 @@ Route::group(['middleware' => 'auth'], function() {
 //    Route::resource('categories', 'CategoriesController');
 });
 
-Route::get('/calendar', 'CalendarController@index');
 Route::get('events', 'EventController@index');
 Route::get('/', 'PagesController@index');
 Route::get('/{category}', 'PagesController@category')->name('category');

@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
 use Illuminate\Http\Request;
+use App\Event;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
-class HomeController extends Controller
+class EventController extends Controller
 {
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $events = [];
@@ -35,7 +29,7 @@ class HomeController extends Controller
             }
         }
         $calendar = Calendar::addEvents($events);
-
-        return view('home', compact('calendar'));
+//        $calendar['script'] = ''
+        return view('calendar', compact('calendar'));
     }
 }
