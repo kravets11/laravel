@@ -6,6 +6,7 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
@@ -79,6 +80,7 @@ class PostsController extends Controller
     {
         $entity = $post;
         $categories = Category::all();
+
         return view('admin.posts.form', compact('categories', 'entity'));
     }
 

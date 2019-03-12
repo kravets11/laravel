@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
+        'id',
         'slug',
         'title',
         'body',
@@ -17,5 +18,29 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['title'] = $title;
+    }
+
+    public function getTitleAttribute($title)
+    {
+        return $title;
+    }
+
+    public function getFullNameAttribute()
+    {
+        $return = [
+            'id' => $this->id,
+            'slug' => $this->slug,
+            'title' => $this->title,
+            'body' => $this->body,
+            'category_id' => $this->category_id,
+            'image' => $this->image,
+            'full_name' => $this->title . '  ' . $this->slug
+        ];
+        return $return;
     }
 }
