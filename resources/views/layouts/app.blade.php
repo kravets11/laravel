@@ -52,6 +52,13 @@
                                 <li><a href="{{ route('categories.create') }}">Create</a></li>
                             </ul>
                         </li>
+                        &nbsp;<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Authors <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('authors.index') }}">All</a></li>
+                                <li><a href="{{ route('authors.create') }}">Create</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -86,6 +93,7 @@
             </div>
         </nav>
 
+        @yield('contents')
         @yield('content')
     </div>
 

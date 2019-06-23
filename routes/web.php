@@ -20,11 +20,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostsController');
     Route::resource('categories', 'CategoriesController');
+    Route::resource('authors', 'AuthorsController');
 //    Route::resource('categories', 'CategoriesController');
 //    Route::resource('categories', 'CategoriesController');
 });
-
 Route::get('events', 'EventController@index');
+Route::post('events', 'EventController@post');
 Route::get('/', 'PagesController@index');
 Route::get('/{category}', 'PagesController@category')->name('category');
 Route::get('/{category}/{post}', 'PagesController@post')->name('post');
