@@ -65,6 +65,17 @@
         </style>
     </head>
     <body>
+    <div class="flex-center">
+        <form action="{{ route('search') }}" method="get">
+            <input type="text" name="search" value="">
+            <select name="type">
+                <option value="category" selected>Category</option>
+                <option value="post">Post</option>
+                <option value="author">Author</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -79,9 +90,7 @@
 
             <div class="content">
                 <h1>@yield('title')</h1>
-                <div class="title m-b-md">
-                    Hello
-                </div>
+
 
                 <div class="links">
                     @yield('content')

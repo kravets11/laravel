@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.form', compact('categories'));
+        $authors = Author::all();
+        return view('admin.posts.form', compact('categories'), compact('authors'));
     }
 
     /**
@@ -43,17 +45,18 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'slug' => 'required',
-            'title' => 'required',
-            'category_id' => 'required|integer'
+            'title' => 'required|max:10|min:3',
+            'category_id' => 'required|integer',
+            'author_id' => 'required|integer'
         ]);
-        File::makeDirectory('storage/images/', 0777, true, true);
+//        File::makeDirectory('storage/images/', 0777, true, true);
 
-        $item = $request->file('image');
+        /*$item = $request->file('image');
 //        dd($request);
         $filename = time() . '.' . $item->getClientOriginalExtension();
         $location = 'storage/images/' . $filename;
         $request->image = $location . $filename;
-        Image::make($item)->save($location);
+        Image::make($item)->save($location);*/
         Post::create($request->all());
 
         return redirect()->route('posts.index');
@@ -80,8 +83,10 @@ class PostsController extends Controller
     {
         $entity = $post;
         $categories = Category::all();
+        $authors = Author::all();
 
-        return view('admin.posts.form', compact('categories', 'entity'));
+
+        return view('admin.posts.form', compact('categories', 'entity'), compact('authors', 'entity'));
     }
 
     /**
@@ -93,20 +98,22 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
         $this->validate($request, [
             'slug' => 'required|unique:posts',
-            'title' => 'required',
-            'category_id' => 'required|integer'
+            'title' => 'required|max:10|min:3',
+            'category_id' => 'required|integer',
+            'author_id' => 'required|integer'
         ]);
-        File::makeDirectory('storage/images/', 0777, true, true);
+     /*   File::makeDirectory('storage/images/', 0777, true, true);*/
 
-        $item = $request->file('image');
+        /*$item = $request->file('image');
 
         $filename = time() . '.' . $item->getClientOriginalExtension();
         $location = 'storage/images/' . $filename;
-        Image::make($item)->save($location);
+        Image::make($item)->save($location);*/
         $request = $request->all();
-        $request['image'] = 'images/' . $filename;
+        /*$request['image'] = 'images/' . $filename;*/
         $post->update($request);
 
         return redirect()->route('posts.index');

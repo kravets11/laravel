@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
@@ -31,4 +32,11 @@ class PagesController extends Controller
         }
         abort(404);
     }
+
+    public function author($authorSlug)
+    {
+        $author = Author::where('slug', $authorSlug)->first();
+        return view('face.author', compact('author'));
+    }
+
 }

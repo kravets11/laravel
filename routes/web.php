@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
 });
 Route::get('events', 'EventController@index');
 Route::post('events', 'EventController@post');
+Route::get('author/{author}', 'PagesController@author')->name('author');
 Route::get('/', 'PagesController@index');
+Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/{category}', 'PagesController@category')->name('category');
 Route::get('/{category}/{post}', 'PagesController@post')->name('post');

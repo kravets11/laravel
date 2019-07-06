@@ -21,7 +21,11 @@
 								@include('admin.fields.text', ['field' => 'slug', 'name' => 'Slug'])
 								@include('admin.fields.textarea', ['field' => 'body', 'name' => 'Body', 'rows' => 10])
 								@include('admin.fields.select', ['field' => 'category_id', 'name' => 'Category', 'options' => $categories])
+								@include('admin.fields.select', ['field' => 'author_id', 'name' => 'Author', 'options' => $authors])
+{{--
 								@include('admin.fields.image', ['field' => 'image', 'name' => 'Image'])
+--}}
+
 							</div>
 							<input type="submit" value="save">
 						</form>

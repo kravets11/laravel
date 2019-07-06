@@ -10,6 +10,10 @@ class Author extends Model
         'firstname',
         'lastname',
         'birthday',
-        'slug'
+        'slug',
     ];
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }
