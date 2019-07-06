@@ -11,7 +11,7 @@
 							<table class="table">
 								<tr>
 									<th>ID</th>
-									<th>Surname</th>
+									<th>Firstname</th>
 									<th>Lastname</th>
 									<th>Birthday</th>
 									<th>Slug</th>
@@ -19,7 +19,7 @@
 @foreach($authors as $author)
     <tr>
         <td>{{ $author->id }}</td>
-        <td>{{ $author->surname }}</td>
+        <td>{{ $author->firstname }}</td>
         <td>{{ $author->lastname }}</td>
         <td>{{ $author->birthday }}</td>
         <td>{{ $author->slug }}</td>
